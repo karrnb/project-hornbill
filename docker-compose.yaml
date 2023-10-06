@@ -33,6 +33,6 @@ services:
 
   nodejs:
     build:
-      context: ./nodejs
+      context: ./my-app
     ports:
       - "3000:3000"
