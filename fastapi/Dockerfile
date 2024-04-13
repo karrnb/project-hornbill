@@ -2,7 +2,7 @@
 FROM python:3.9-slim
 
 # Set the working directory inside the container
-WORKDIR /app
+WORKDIR /opt/app
 
 # Copy the requirements file to the working directory
 COPY requirements.txt .
@@ -16,5 +16,7 @@ COPY . .
 # Expose the port on which the application will run
 EXPOSE 8081
 
+WORKDIR /opt/app/app
+
 # Run the FastAPI application using uvicorn server
-CMD ["uvicorn", "fastapi:app", "--host", "0.0.0.0", "--port", "8081"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8081"]
