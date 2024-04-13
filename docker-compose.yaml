@@ -15,7 +15,7 @@ services:
     build:
       context: fastapi
     ports:
-      - "8000:8000"
+      - "8081:8081"
     environment:
       - MONGO_URI=mongodb://mongo:27017/mydb
 
