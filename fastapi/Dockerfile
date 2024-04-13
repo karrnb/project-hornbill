@@ -16,7 +16,7 @@ COPY . .
 # Expose the port on which the application will run
 EXPOSE 8081
 
-WORKDIR /opt/app/app
+# WORKDIR /opt/app/app
 
 # Run the FastAPI application using uvicorn server
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8081"]
