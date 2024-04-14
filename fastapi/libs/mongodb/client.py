@@ -20,7 +20,7 @@ class MongoConnector:
 
         if not url:
             url = URL
-        client = MongoClient(url, username="AdminKaran", password="123@HelloWorld")
+        client = MongoClient(url, username="serviceuser", password="your_mongodb_password")
 
         if not db_name:
             db_name = DB_NAME

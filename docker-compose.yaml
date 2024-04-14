@@ -17,10 +17,47 @@ services:
     ports:
       - "8081:8081"
     environment:
-      - MONGO_URI=mongodb://mongo:27017/mydb
+      MONGODB_DATABASE: recipes
+      MONGODB_USERNAME: serviceuser
+      MONGODB_PASSWORD: your_mongodb_password
+      MONGODB_HOSTNAME: mongodb
+      #MONGO_URI: mongodb://mongo:27017/mydb
+    depends_on:
+      - mongodb
+    networks:
+      - frontend
+      - backend
+
+  mongodb:
+    image: mongo:4.0.8
+    container_name: mongodb
+    restart: unless-stopped
+    command: mongod --auth
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongodbadmin
+      MONGO_INITDB_ROOT_PASSWORD: your_mongodb_root_password
+      MONGO_INITDB_DATABASE: recipes
+      MONGODB_DATA_DIR: /data/db
+      MONDODB_LOG_DIR: /dev/null
+    volumes:
+      - mongodbdata:/data/db
+    networks:
+      - backend
 
   nodejs:
     build:
       context: ./my-app
     ports:
       - "3000:3000"
+    networks:
+      - frontend
+
+  networks:
+    frontend:
+      driver: bridge
+    backend:
+      driver: bridge
+
+  volumes:
+    mongodbdata:
+      driver: local
