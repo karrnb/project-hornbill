@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
   nginx:
@@ -52,12 +52,12 @@ services:
     networks:
       - frontend
 
-  networks:
-    frontend:
-      driver: bridge
-    backend:
-      driver: bridge
+networks:
+  frontend:
+    driver: bridge
+  backend:
+    driver: bridge
 
-  volumes:
-    mongodbdata:
-      driver: local
+volumes:
+  mongodbdata:
+    driver: local
